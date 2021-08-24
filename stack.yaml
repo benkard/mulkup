@@ -1,0 +1,21 @@
+resolver: nightly-2021-08-20
+
+packages:
+  - .
+
+ghc-options:
+  "$everything": -haddock
+
+system-ghc: true
+compiler-check: newer-minor
+
+require-stack-version: ">=2.3"
+
+allow-newer: true
+
+extra-deps:
+  - co-log-0.4.0.1@sha256:3d4c17f37693c80d1aa2c41669bc3438fac3e89dc5f479e57d79bc3ddc4dfcc5,5087
+  - co-log-core-0.2.1.1@sha256:1209cb589cf431c640f79d63b38b6cc8912a9f8397502b8c13e0959b13212bd6,3574
+  - co-log-polysemy-0.0.1.2@sha256:a6ea6103f5ca806dc16bcdbb666ee2ebafdbbf36a9626f33103105a41a55d561,3645
+  - chronos-1.1.2@sha256:b38c48edd4f63069bbb6646f0f39d9a5ae21567ef3e031ddee514f7147cfd0b0,3886
+  - typerep-map-0.3.3.0@sha256:20510efab770158414ac7828d1eca063d795bcc724ac634dd13bc7a50b476f42,4681

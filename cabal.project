@@ -1,0 +1,11 @@
+packages: .
+
+optional-packages: vendor/*/*.cabal
+
+documentation: True
+haddock-hoogle: True
+
+allow-newer:
+  , co-log:ansi-terminal
+  , co-log-polysemy:polysemy
+  , polysemy:Cabal
