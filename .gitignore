@@ -2,6 +2,7 @@
 *.iml
 
 /config.dhall
+/result
 
 /.idea
 /.stack-work
