@@ -79,7 +79,8 @@ runBupstash = interpret \case
         return x
 
   BupRemove ids -> do
-    procs "bupstash" ["rm", "--ids-from-stdin"] (select (map unsafeTextToLine ids))
+    forM_ ids $ \id' -> do
+      procs "bupstash" ["rm", labelArg ("id", id')] empty
 
   where
     getHost :: Member (Reader MulkupConfig) r => Sem r Text
