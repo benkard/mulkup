@@ -53,15 +53,8 @@
                 (self.callHackage "optics-core" "0.4" { });
               optics-th = pkgs.haskell.lib.dontCheck
                 (self.callHackage "optics-th" "0.4" { });
-              optics-extra = pkgs.haskell.lib.dontCheck (
-                self.callHackageDirect
-                  {
-                    pkg = "optics-extra";
-                    ver = "0.4";
-                    sha256 = "sha256-oKV8oF0oNHyuActOA7uxBkBzlTgG8LapcKrApa2Pg6U=";
-                  }
-                  { });
-
+              optics-extra = pkgs.haskell.lib.dontCheck
+                (self.callHackage "optics-extra" "0.4" { });
             };
 
             modifier = drv:
