@@ -1,0 +1,120 @@
+// SPDX-FileCopyrightText: © 2021 Matthias Andreas Benkard <code@mail.matthias.benkard.de>
+//
+// SPDX-License-Identifier: GFDL-1.3-or-later
+
+= Mulkup
+Matthias Andreas Benkard
+// Meta
+:experimental:
+:data-uri:
+:sectnums:
+:toc:
+:stem:
+:toclevels: 2
+:description: Mulkup Manual
+:keywords: mulk
+// Settings
+:icons: font
+:source-highlighter: rouge
+
+
+A configurable https://bupstash.io[bupstash] wrapper.
+
+
+== Summary
+
+Mulkup is a backup script that wraps https://bupstash.io[bupstash].
+
+Features:
+
+ - Backup rotation (hourly, daily, weekly, monthly)
+ - Multiple stashes
+ - Exclusion lists
+
+
+== Installation
+
+=== Using Stack
+
+Outside of Nix, https://haskellstack.org/[Stack] is the easiest way to
+install Mulkup.
+
+Check out the repository and run:
+
+[source,console]
+----
+stack install
+----
+
+=== Using Nix
+
+Mulkup is available as a
+https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#description[Nix
+flake]:
+
+[source,console]
+----
+nix profile install github:benkard/mulkup
+----
+
+=== Using Cabal
+
+It is possible to install Mulkup using
+https://www.haskell.org/cabal[Cabal].  Note that this is less reliable
+than either Stack or Nix and requires an installation of
+http://ghc.haskell.org[GHC].
+
+Check out the repository and run:
+
+[source,console]
+----
+cabal install
+----
+
+
+== Usage
+
+Copy link:config.example.dhall[`config.example.dhall`] to `config.dhall` and open it in a text editor.
+
+Execute the program without arguments to perform a backup:
+
+[source,console]
+----
+mulkup
+----
+
+A simple configuration file that defines a single stash might look
+like the following:
+
+[source,dhall]
+----
+let home = "/home/mulk" in
+
+{ host = "mulkinator"
+, stashes =
+    [ { name = "mulk.tar"
+      , baseDir = home
+
+      , tiers =
+          { hourly  = { keep = 24 }
+          , daily   = { keep =  7 }
+          , weekly  = { keep =  4 }
+          , monthly = { keep = 12 }
+          }
+
+      , exclusions =
+          [
+          , "**/.stack-work"
+          , "**/dist-newstyle"
+          , "${home}/.cabal/bin"
+          , "${home}/.cabal/packages"
+          , "${home}/.ghcup"
+          , "${home}/.stack"
+          , "${home}/Library/Caches"
+          ]
+      }
+    ]
+}
+----
+
+You can add as many stashes to the `stashes` list as you like.
