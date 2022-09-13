@@ -13,8 +13,7 @@ let home = "/Users/mulk" in
           }
 
       , exclusions =
-          [
-          , "**/.stack-work"
+          [ "**/.stack-work"
           , "**/dist-newstyle"
 
           , "${home}/.boot/cache"
