@@ -74,7 +74,16 @@ cabal install
 
 == Usage
 
-Copy link:config.example.dhall[`config.example.dhall`] to `config.dhall` and open it in a text editor.
+Copy link:config.example.dhall[`config.example.dhall`] to
+`config.dhall` and open it in a text editor.  Edit it to suit your
+needs.
+
+To configure the bupstash repository, key, and any other settings
+available in bupstash itself, set the corresponding
+https://bupstash.io/doc/man/bupstash-put.html#ENVIRONMENT[environment
+variables].  See the
+https://bupstash.io/doc/man/bupstash.html[bupstash manual] for
+details.
 
 Execute the program without arguments to perform a backup:
 
