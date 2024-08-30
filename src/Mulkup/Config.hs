@@ -1,6 +1,6 @@
 {-# LANGUAGE UndecidableInstances #-}
 
-module Mulkup.Config (TierConfig (..), MulkupConfig (..), readConfig) where
+module Mulkup.Config (TierConfig (..), TierConfigs (..), StashConfig (..), MulkupConfig (..), readConfig) where
 
 import Dhall
 import Mulkup.Prelude
