@@ -3,45 +3,10 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages:
-- completed:
-    hackage: co-log-0.4.0.1@sha256:3d4c17f37693c80d1aa2c41669bc3438fac3e89dc5f479e57d79bc3ddc4dfcc5,5087
-    pantry-tree:
-      size: 1126
-      sha256: e73165ff8f744709428e2e87984c9d60ca1cec43d8455c413181c7c466e7497c
-  original:
-    hackage: co-log-0.4.0.1@sha256:3d4c17f37693c80d1aa2c41669bc3438fac3e89dc5f479e57d79bc3ddc4dfcc5,5087
-- completed:
-    hackage: co-log-core-0.2.1.1@sha256:1209cb589cf431c640f79d63b38b6cc8912a9f8397502b8c13e0959b13212bd6,3574
-    pantry-tree:
-      size: 584
-      sha256: f893bd4a8cc16ca1fdd1f6dedefd2239d261c0f926eafb444d01364d5898a0e2
-  original:
-    hackage: co-log-core-0.2.1.1@sha256:1209cb589cf431c640f79d63b38b6cc8912a9f8397502b8c13e0959b13212bd6,3574
-- completed:
-    hackage: co-log-polysemy-0.0.1.2@sha256:a6ea6103f5ca806dc16bcdbb666ee2ebafdbbf36a9626f33103105a41a55d561,3645
-    pantry-tree:
-      size: 400
-      sha256: 56ddcbaf126c9e557d7e1336c6d1a9044567676dcdbc24fab34907d9a5725f73
-  original:
-    hackage: co-log-polysemy-0.0.1.2@sha256:a6ea6103f5ca806dc16bcdbb666ee2ebafdbbf36a9626f33103105a41a55d561,3645
-- completed:
-    hackage: chronos-1.1.2@sha256:b38c48edd4f63069bbb6646f0f39d9a5ae21567ef3e031ddee514f7147cfd0b0,3886
-    pantry-tree:
-      size: 637
-      sha256: 9e25587117ee3aa7d9de26085cfb1b464275b45a33952985d44182892c6ef3e5
-  original:
-    hackage: chronos-1.1.2@sha256:b38c48edd4f63069bbb6646f0f39d9a5ae21567ef3e031ddee514f7147cfd0b0,3886
-- completed:
-    hackage: typerep-map-0.3.3.0@sha256:20510efab770158414ac7828d1eca063d795bcc724ac634dd13bc7a50b476f42,4681
-    pantry-tree:
-      size: 1487
-      sha256: 30d61ac00807c3229b7b6ee274853f0ec1e272503a1b210ce10aad3db19f443a
-  original:
-    hackage: typerep-map-0.3.3.0@sha256:20510efab770158414ac7828d1eca063d795bcc724ac634dd13bc7a50b476f42,4681
+packages: []
 snapshots:
 - completed:
-    size: 576543
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2021/8/20.yaml
-    sha256: 17a600058a2092ff77b40d563b9dc1d7b98f0f7b7b75d54dc7d49dc17b1fb26a
-  original: nightly-2021-08-20
+    sha256: acaab6ca693211938d1542abcb1c83a2f298b9f6b571854a9d38febe39b6408e
+    size: 719577
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/22/31.yaml
+  original: lts-22.31
