@@ -1,3 +1,4 @@
+{-# LANGUAGE TypeOperators #-}
 {-# LANGUAGE UndecidableInstances #-}
 
 module Mulkup.Config (TierConfig (..), TierConfigs (..), StashConfig (..), MulkupConfig (..), readConfig) where

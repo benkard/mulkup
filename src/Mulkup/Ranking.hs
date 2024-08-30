@@ -55,7 +55,6 @@ utctWeek (UTCTime day _) =
   julianDay + fromIntegral (dayOfWeekDiff (dayOfWeek day) Sunday)
   where
     (ModifiedJulianDay julianDay) = day
-    dayOfWeekDiff a b = mod (fromEnum a - fromEnum b) 7
 
 utctMonth :: UTCTime -> Integer
 utctMonth (UTCTime day _) = fromIntegral m
