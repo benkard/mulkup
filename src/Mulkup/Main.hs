@@ -27,19 +27,20 @@ import Polysemy.Reader (Reader, asks, runReader)
 main :: IO ()
 main = do
   flags <- execParser $ info (flagParser <**> helper) fullDesc
+  config <- readConfig "./config.dhall"
+
+  let effectiveFlags = flags & #verbose %~ (|| config ^. #verbose)
   let messageAction =
-        if verbose flags
+        if effectiveFlags ^. #verbose
           then richMessageAction
           else simpleMessageAction
-
-  config <- readConfig "./config.dhall"
 
   result <-
     main'
       & runBupstash
       & runLogAction @IO messageAction
       & runReader (config :: MulkupConfig)
-      & runReader flags
+      & runReader effectiveFlags
       & errorToIOFinal @Text
       & embedToFinal @IO
       & runFinal @IO

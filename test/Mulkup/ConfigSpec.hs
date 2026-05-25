@@ -11,7 +11,7 @@ cases :: TestTree
 cases =
   testGroup
     "ConfigSpec"
-    [unit_simpleConfig]
+    [unit_simpleConfig, unit_verboseOmitted]
 
 unit_simpleConfig :: TestTree
 unit_simpleConfig = testCase "unit_simpleConfig" $ do
@@ -20,6 +20,8 @@ unit_simpleConfig = testCase "unit_simpleConfig" $ do
     exampleConfigText =
       "\
       \{ host = \"atmon\" \
+      \ \
+      \, verbose = False \
       \ \
       \, stashes = \
       \    [ { name = \"mulk\" \
@@ -43,6 +45,29 @@ unit_simpleConfig = testCase "unit_simpleConfig" $ do
       \          , \"~/.cabal/packages\" \
       \          , \"~/.cache\" \
       \          ] \
+      \      } \
+      \    ] \
+      \}"
+
+unit_verboseOmitted :: TestTree
+unit_verboseOmitted = testCase "unit_verboseOmitted" $ do
+  config <- readConfig exampleConfigText
+  verbose config @?= False
+  where
+    exampleConfigText =
+      "\
+      \{ host = \"atmon\" \
+      \ \
+      \, stashes = \
+      \    [ { name = \"mulk\" \
+      \      , baseDir = \"/Users/mulk\" \
+      \      , tiers = \
+      \          { hourly  = { keep = 1 } \
+      \          , daily   = { keep = 1 } \
+      \          , weekly  = { keep = 1 } \
+      \          , monthly = { keep = 1 } \
+      \          } \
+      \      , exclusions = [] : List Text \
       \      } \
       \    ] \
       \}"

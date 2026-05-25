@@ -1,6 +1,7 @@
 let home = "/Users/mulk" in
 
 { host = "mulkinator"
+, verbose = False
 , stashes =
     [ { name = "mulk.tar"
       , baseDir = home

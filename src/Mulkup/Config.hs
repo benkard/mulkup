@@ -33,7 +33,7 @@ makeFieldLabelsNoPrefix ''StashConfig
 
 --- MulkupConfig ---
 
-data MulkupConfig = MulkupConfig {host :: Text, stashes :: [StashConfig]}
+data MulkupConfig = MulkupConfig {host :: Text, stashes :: [StashConfig], verbose :: Bool}
   deriving stock (Generic, Show)
   deriving anyclass (FromDhall)
 
@@ -41,5 +41,7 @@ makeFieldLabelsNoPrefix ''MulkupConfig
 
 --- readConfig ---
 
+-- | Reads a Dhall config, merging the user's record over a defaults
+-- record so optional fields can be omitted entirely.
 readConfig :: Text -> IO MulkupConfig
-readConfig = Dhall.input auto
+readConfig text = Dhall.input auto ("{ verbose = False } // (" <> text <> ")")
