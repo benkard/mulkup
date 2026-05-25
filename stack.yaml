@@ -1,4 +1,4 @@
-resolver: lts-22.31
+resolver: lts-23.3
 
 packages:
   - .
@@ -13,4 +13,5 @@ require-stack-version: ">=2.3"
 
 allow-newer: true
 
-extra-deps: []
+extra-deps:
+  - dhall-1.42.1@sha256:642785a2db236c7e94a5765e70690f88f87ef9c01a891669674b9cbc70a14948,17321
