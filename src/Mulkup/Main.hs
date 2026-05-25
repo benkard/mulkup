@@ -39,6 +39,7 @@ main = do
       & runBupstash
       & runLogAction @IO messageAction
       & runReader (config :: MulkupConfig)
+      & runReader flags
       & errorToIOFinal @Text
       & embedToFinal @IO
       & runFinal @IO

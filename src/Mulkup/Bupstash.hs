@@ -7,6 +7,7 @@
 module Mulkup.Bupstash (BupItem(..), Bupstash (..), bupPut, bupGc, bupList, bupRemove, BupFilter (..), runBupstash, bupItemUTCTime) where
 
 import Mulkup.Config (MulkupConfig (..))
+import Mulkup.Flags (Flags (..))
 import Mulkup.Prelude hiding (put)
 import Optics
 import Polysemy
@@ -56,15 +57,16 @@ bupItemUTCTime item =
 
 -- * Implementation
 
--- | Runs a 'Bupstash' using the “bupstash” CLI command.
-runBupstash :: (Member (Error Text) r, Member (Log Message) r, Member (Embed IO) r, Member (Reader MulkupConfig) r) => Sem (Bupstash ': r) a -> Sem r a
+-- | Runs a 'Bupstash' using the "bupstash" CLI command.
+runBupstash :: (Member (Error Text) r, Member (Log Message) r, Member (Embed IO) r, Member (Reader MulkupConfig) r, Member (Reader Flags) r) => Sem (Bupstash ': r) a -> Sem r a
 runBupstash = interpret \case
   BupGc ->
     procs "bupstash" ["gc"] empty
 
   BupPut baseDir exclusions labels -> do
     host <- getHost
-    procs "bupstash" (["put", "--xattrs"] ++ map exclusionArg exclusions ++ map labelArg labels ++ [labelArg ("host", host)] ++ [baseDir]) empty
+    verboseArg <- getVerboseArg
+    procs "bupstash" (["put", "--print-stats", "--xattrs"] ++ verboseArg ++ map exclusionArg exclusions ++ map labelArg labels ++ [labelArg ("host", host)] ++ [baseDir]) empty
 
   BupList bupFilter -> do
     host <- getHost
@@ -86,6 +88,11 @@ runBupstash = interpret \case
     getHost :: Member (Reader MulkupConfig) r => Sem r Text
     getHost =
       asks @MulkupConfig (^. #host)
+
+    getVerboseArg :: (Member (Reader Flags) r) => Sem r [Text]
+    getVerboseArg = do
+      isVerbose <- asks @Flags (^. #verbose)
+      return $ if isVerbose then ["-v"] else []
 
 -- | Fixes up the buggy two-line output that Buptash produces in
 -- jsonl1 output mode.
